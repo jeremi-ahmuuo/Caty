@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catherine Munyao | Remote Operations & Logistics VA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        :root { 
+            --primary: #1e3b4f; 
+            --secondary: #2c5f7b; 
+            --accent: #d49b3b; 
+            --soft-bg: #f9fbfd;
+            --card-bg: #ffffff;
+            --text-dark: #1f2e3a;
+            --text-soft: #3f566e;
+        }
+        
+        body { 
+            background-color: var(--soft-bg);
+            color: var(--text-dark); 
+            line-height: 1.5; 
+            font-weight: 400;
+        }
+        
+        /* Header */
+        header { 
+            background-color: #ffffff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.02);
+            padding: 16px 0;
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 100; 
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: 500; 
+            color: var(--primary);
+            letter-spacing: -0.3px;
+            text-decoration: none;
+        }
+        .logo a { color: inherit; text-decoration: none; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { 
+            color: var(--text-soft); 
+            text-decoration: none; 
+            font-weight: 450; 
+            font-size: 1rem;
+            transition: 0.15s;
+            cursor: pointer;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .mobile-menu-btn { display: none; font-size: 1.8rem; color: var(--primary); cursor: pointer; }
+        
+        /* Hero */
+        .hero { 
+            padding: 150px 0 80px; 
+            background-color: white;
+            border-bottom: 1px solid #f0f3f7;
+        }
+        .hero-content { max-width: 900px; margin: 0 auto; text-align: center; }
+        .hero-name {
+            font-size: 3.2rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        .hero-title {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--secondary);
+            margin-bottom: 16px;
+        }
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: var(--text-soft);
+            max-width: 750px;
+            margin: 0 auto 40px;
+            font-weight: 350;
+            line-height: 1.6;
+        }
+        .remote-badge {
+            display: inline-block;
+            background: #eaf3f7;
+            color: var(--secondary);
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            border: 1px solid #cbe0ea;
+            text-decoration: none;
+        }
+        .remote-badge:hover { background: #dcebf2; }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: white;
+            border: 1px solid var(--secondary);
+            border-radius: 40px;
+            color: var(--secondary);
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+            margin: 8px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .btn-primary:hover { background: #143141; }
+        .btn-outline:hover { background: #f0f7fc; }
+        
+        /* Sections */
+        section { padding: 80px 0; background-color: white; }
+        section:nth-child(even) { background-color: var(--soft-bg); }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 450;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--text-soft);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1.1rem;
+        }
+        
+        /* Why work with me */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .why-card {
+            background: white;
+            padding: 40px 28px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.02);
+            border: 1px solid #ecf1f7;
+            transition: 0.15s;
+        }
+        .why-card:hover { border-color: var(--accent); }
+        .why-card h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .why-card p { color: var(--text-soft); line-height: 1.6; }
+        
+        /* Services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid #ecf1f7;
+            transition: 0.15s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .service-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .service-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        .service-card p { color: var(--text-soft); margin-bottom: 20px; line-height: 1.6; }
+        .service-highlight {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            border-top: 1px dashed #dae6ed;
+            padding-top: 16px;
+            margin-top: 10px;
+        }
+        .service-highlight i { color: var(--accent); margin-right: 6px; }
+        
+        /* Work samples */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 30px;
+        }
+        .work-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid #ecf1f7;
+            transition: 0.15s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .work-card:hover { border-color: var(--accent); }
+        .work-card h4 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .work-sub {
+            color: var(--secondary);
+            font-weight: 450;
+            margin-bottom: 20px;
+        }
+        .work-desc { color: var(--text-soft); margin-bottom: 25px; line-height: 1.6; }
+        .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .work-tag {
+            background: #f0f5fa;
+            color: var(--secondary);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .work-tag:hover { background: #e1ecf5; }
+        
+        /* Tools grid */
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px 60px;
+            margin: 50px 0 20px;
+        }
+        .tool-item {
+            font-size: 1.1rem;
+            font-weight: 450;
+            color: var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: 0.15s;
+        }
+        .tool-item:hover { color: var(--accent); }
+        .tool-item i { font-size: 2.2rem; color: var(--secondary); opacity: 0.8; }
+        .tool-item:hover i { color: var(--accent); }
+        
+        /* Education cards (clickable) */
+        .edu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .edu-card {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 1px solid #ecf1f7;
+            min-width: 240px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.15s;
+            display: block;
+        }
+        .edu-card:hover { border-color: var(--accent); }
+        .edu-card h5 { color: var(--primary); font-size: 1.2rem; margin-bottom: 12px; }
+        .edu-card p { color: var(--text-soft); }
+        
+        /* Contact section with clickable icons */
+        .contact-block {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0 30px;
+        }
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+            transition: 0.15s;
+        }
+        .contact-item i {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        .contact-item span { font-size: 1rem; color: var(--text-soft); }
+        .contact-item:hover i { color: var(--accent); }
+        .contact-item:hover span { color: var(--primary); }
+        
+        .contact-location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-soft);
+            margin: 30px 0 20px;
+        }
+        .contact-email, .contact-phone {
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+            margin: 0 12px;
+        }
+        .contact-email:hover, .contact-phone:hover { color: var(--accent); }
+        
+        /* Footer links */
+        footer { 
+            background: white; 
+            padding: 40px 0 30px; 
+            border-top: 1px solid #ecf1f7;
+            text-align: center;
+            color: var(--text-soft);
+        }
+        .footer-links a {
+            color: var(--text-soft);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        
+        /* responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 70px; 
+                left: 0; 
+                right: 0; 
+                background: white; 
+                padding: 30px; 
+                box-shadow: 0 20px 30px rgba(0,0,0,0.03);
+                border-bottom: 1px solid #ecf1f7;
+            }
+            .nav-links.active { display: flex; }
+            .hero-name { font-size: 2.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">CATHERINE MUNYAO</a>
+                <div class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home" onclick="closeMenu()">Home</a>
+                    <a href="#about" onclick="closeMenu()">About</a>
+                    <a href="#services" onclick="closeMenu()">Services</a>
+                    <a href="#work" onclick="closeMenu()">Work samples</a>
+                    <a href="#contact" onclick="closeMenu()">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <a href="#contact" class="remote-badge"><i class="fas fa-globe"></i> Available for remote work worldwide</a>
+            <h1 class="hero-name">Catherine Munyao</h1>
+            <div class="hero-title">Remote Operations & Logistics Virtual Assistant</div>
+            <div class="hero-tagline">I help businesses streamline supply chains, automate operations, and reduce costs — entirely remotely. 9+ years of experience in logistics, procurement, and data systems.</div>
+            <a href="#contact" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book a free discovery call</a>
+            <a href="#services" class="btn btn-outline"><i class="fas fa-cogs"></i> Explore services</a>
+        </div>
+    </section>
+
+    <!-- About Me + Why Work With Me -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="hero-tagline" style="max-width: 800px; margin-bottom: 50px;">
+                I'm a remote operations specialist who doesn't just manage tasks — I manage your operational continuity. 
+                I help busy founders and companies break free from supply chain headaches, document errors, and inefficient processes — all while working 100% remotely.
+            </div>
+            
+            <!-- Why Work With Me (3 principles) -->
+            <div class="why-grid">
+                <div class="why-card">
+                    <h3>⚡ Process Integrity</h3>
+                    <p>I design and enforce remote-friendly SOPs that cut waste and risk. I've built systems that reduced document errors by 90% and time waste by 98%.</p>
+                </div>
+                <div class="why-card">
+                    <h3>📊 Data‑Driven Efficiency</h3>
+                    <p>I build dashboards and tracking systems that give you real‑time visibility — from shipment monitoring to KPI tracking, entirely in the cloud.</p>
+                </div>
+                <div class="why-card">
+                    <h3>🤝 Proactive Partnership</h3>
+                    <p>I anticipate bottlenecks before they happen. Whether it's customs compliance, supplier delays, or inventory issues — I solve them remotely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Services (all remote-friendly) -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Remote Services I Offer</h2>
+            <p class="section-sub">Completely virtual support — I work from anywhere to keep your operations running smoothly.</p>
+            <div class="services-grid">
+                <a href="#contact" class="service-card">
+                    <div class="service-icon"><i class="fas fa-ship"></i></div>
+                    <h3>Remote Logistics Coordination</h3>
+                    <p>Airfreight tracking, export documentation, customs compliance — all managed via cloud tools. I keep your shipments moving from anywhere.</p>
+                    <div class="service-highlight"><i class="fas fa-check-circle"></i> Real‑time dashboards • 95% delay reduction</div>
+                </a>
+                <a href="#contact" class="service-card">
+                    <div class="service-icon"><i class="fas fa-file-signature"></i></div>
+                    <h3>Virtual Procurement Support</h3>
+                    <p>Vendor vetting, purchase order management, ERP data entry, and supplier follow-ups — fully remote, fully organized.</p>
+                    <div class="service-highlight"><i class="fas fa-check-circle"></i> 90% error reduction • cost savings</div>
+                </a>
+                <a href="#contact" class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Data Analysis & Reporting</h3>
+                    <p>Remote KPI dashboards (SharePoint, Excel, Power BI), sales forecasting, and data mining — I turn your data into decisions.</p>
+                    <div class="service-highlight"><i class="fas fa-check-circle"></i> Real‑time shipping dashboard</div>
+                </a>
+                <a href="#contact" class="service-card">
+                    <div class="service-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Remote Fleet & Inventory</h3>
+                    <p>I manage driver checklists, vehicle tracking sheets, and inventory reports remotely — using cloud-based tools.</p>
+                    <div class="service-highlight"><i class="fas fa-check-circle"></i> Fleet tracking for 6+ vehicles</div>
+                </a>
+                <a href="#contact" class="service-card">
+                    <div class="service-icon"><i class="fas fa-file-invoice"></i></div>
+                    <h3>Export Compliance (Remote)</h3>
+                    <p>E‑citizen document processing, export declaration support, and compliance checks — all handled virtually.</p>
+                    <div class="service-highlight"><i class="fas fa-check-circle"></i> Managed 500k KES/week</div>
+                </a>
+                <a href="#contact" class="service-card">
+                    <div class="service-icon"><i class="fas fa-search"></i></div>
+                    <h3>Data Mining & Lead Generation</h3>
+                    <p>Remote lead research, data scraping, CRM updates, and market intelligence — I fill your pipeline with qualified data.</p>
+                    <div class="service-highlight"><i class="fas fa-check-circle"></i> 80% time saved on data entry</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Samples (remote projects) -->
+    <section id="work">
+        <div class="container">
+            <h2 class="section-title">Remote projects I've delivered</h2>
+            <p class="section-sub">Real results from real remote work — click any card to discuss a similar solution.</p>
+            <div class="work-grid">
+                <a href="#contact" class="work-card">
+                    <h4>Real‑time shipping dashboard</h4>
+                    <div class="work-sub">SharePoint & cloud integration</div>
+                    <div class="work-desc">Built a remote-accessible dashboard giving global teams real‑time shipping visibility. Reduced information delays by 100%.</div>
+                    <div class="work-tags"><span class="work-tag">SharePoint</span><span class="work-tag">Dashboards</span><span class="work-tag">Remote ops</span></div>
+                </a>
+                <a href="#contact" class="work-card">
+                    <h4>Flight offload reduction system</h4>
+                    <div class="work-sub">Remote monitoring</div>
+                    <div class="work-desc">Developed a cloud-based alert system that reduced flight offloads by 95% — managed entirely remotely.</div>
+                    <div class="work-tags"><span class="work-tag">Data analysis</span><span class="work-tag">Automation</span><span class="work-tag">Aviation</span></div>
+                </a>
+                <a href="#contact" class="work-card">
+                    <h4>Procurement error elimination</h4>
+                    <div class="work-sub">Remote process redesign</div>
+                    <div class="work-desc">Introduced remote-friendly procurement checklists and databases, reducing document errors by 90% and time waste by 98%.</div>
+                    <div class="work-tags"><span class="work-tag">Procurement</span><span class="work-tag">Database</span><span class="work-tag">SOPs</span></div>
+                </a>
+                <a href="#contact" class="work-card">
+                    <h4>E‑citizen payment management</h4>
+                    <div class="work-sub">Remote compliance</div>
+                    <div class="work-desc">Managed remote processing of ~500k KES weekly via E‑citizen, ensuring 100% compliance and on‑time payments.</div>
+                    <div class="work-tags"><span class="work-tag">E‑citizen</span><span class="work-tag">GovTech</span><span class="work-tag">Remote</span></div>
+                </a>
+                <a href="#contact" class="work-card">
+                    <h4>Sales KPI database</h4>
+                    <div class="work-sub">Excel → cloud</div>
+                    <div class="work-desc">Migrated sales tracking from Word to cloud-based Excel with automated KPIs — accessible to remote teams.</div>
+                    <div class="work-tags"><span class="work-tag">Excel</span><span class="work-tag">KPIs</span><span class="work-tag">Cloud</span></div>
+                </a>
+                <a href="#contact" class="work-card">
+                    <h4>Remote fleet checklists</h4>
+                    <div class="work-sub">Google Sheets / Drive</div>
+                    <div class="work-desc">Created digital driver checklists and vehicle tracking systems accessible via phone from anywhere.</div>
+                    <div class="work-tags"><span class="work-tag">Fleet</span><span class="work-tag">Google Workspace</span><span class="work-tag">Remote</span></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools I Use (clickable) -->
+    <section style="background: var(--soft-bg);">
+        <div class="container">
+            <h2 class="section-title">Tools I Use Remotely</h2>
+            <p class="section-sub">Cloud-based platforms I leverage to deliver remote solutions.</p>
+            <div class="tools-grid">
+                <a href="#" class="tool-item"><i class="fas fa-cubes"></i> ERP</a>
+                <a href="#" class="tool-item"><i class="fas fa-calculator"></i> Codices</a>
+                <a href="#" class="tool-item"><i class="fab fa-quickbooks"></i> QuickBooks</a>
+                <a href="#" class="tool-item"><i class="fas fa-chart-line"></i> PAT/AS400</a>
+                <a href="#" class="tool-item"><i class="fas fa-file-excel"></i> Excel</a>
+                <a href="#" class="tool-item"><i class="fas fa-share-alt"></i> SharePoint</a>
+                <a href="#" class="tool-item"><i class="fas fa-cloud"></i> E‑citizen</a>
+                <a href="#" class="tool-item"><i class="fas fa-robot"></i> Zapier</a>
+                <a href="#" class="tool-item"><i class="fas fa-tasks"></i> Trello</a>
+                <a href="#" class="tool-item"><i class="fas fa-database"></i> SQL</a>
+                <a href="#" class="tool-item"><i class="fas fa-chart-pie"></i> Power BI</a>
+                <a href="#" class="tool-item"><i class="fas fa-google"></i> G Suite</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education (no referees) -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Education & Continuous Learning</h2>
+            <div class="edu-grid">
+                <a href="#" class="edu-card">
+                    <h5>St. Paul's University</h5>
+                    <p>BBA Supply Chain Management (2014)</p>
+                </a>
+                <a href="#" class="edu-card">
+                    <h5>Wantech Computer College</h5>
+                    <p>Diploma IT (2010)</p>
+                </a>
+                <a href="#" class="edu-card">
+                    <h5>Wantech Computer College</h5>
+                    <p>Certificate Secretarial (2010)</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact - all icons clickable -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's work together — remotely</h2>
+            <p class="section-sub">Ready to free up your time and streamline your operations? I'm just a click away.</p>
+            <div class="contact-block">
+                <div class="contact-links">
+                    <a href="mailto:mbithemunyao@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>mbithemunyao@gmail.com</span>
+                    </a>
+                    <a href="tel:+254715317864" class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+254 715 317 864</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/catherine-munyao" target="_blank" class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://wa.me/254715317864" target="_blank" class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+                <div class="contact-location">
+                    <i class="fas fa-map-marker-alt" style="color: var(--accent);"></i>
+                    <span>Nairobi, Kenya — working worldwide</span>
+                </div>
+                <div style="margin-top: 40px;">
+                    <a href="mailto:mbithemunyao@gmail.com?subject=Remote%20support%20inquiry" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send an email</a>
+                    <a href="https://calendly.com/catherine-munyao/30min" target="_blank" class="btn btn-outline"><i class="fas fa-video"></i> Schedule video call</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with clickable links -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#work">Work samples</a>
+                <a href="#contact">Contact</a>
+                <a href="mailto:mbithemunyao@gmail.com">Email</a>
+            </div>
+            <p style="margin-top: 30px;">© 2025 Catherine Munyao — Remote Operations & Logistics VA</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+        function closeMenu() {
+            document.getElementById('navLinks').classList.remove('active');
+        }
+        
+        // Smooth scroll for internal links (prevent default anchor jump)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === "#" || href === "") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.pushState(null, null, href); // optional update URL
+                }
+            });
+        });
+        
+        // Make tool & edu dummy links work nicely (don't actually navigate away)
+        document.querySelectorAll('.tool-item[href="#"], .edu-card[href="#"]').forEach(link => {
+            link.addEventListener('click', (e) => e.preventDefault());
+        });
+    </script>
+</body>
+</html>
